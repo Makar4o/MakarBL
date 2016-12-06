@@ -16,7 +16,7 @@ configure do
     #intialization DataBase
     init_db
     # create table if not exist table
-    @db.execute 'create table if not exists Posts
+    @db.execute 'CREATE TABLE IF NOT EXISTS Posts
     (
 	        id	INTEGER PRIMARY KEY AUTOINCREMENT,
 	        create_date	DATE,
@@ -48,5 +48,6 @@ post '/new' do
   # save data ib database
   @db.execute 'insert into Posts (content, create_date) values (?, datetime())', [content]
 
-  erb "You typed: #{content}"
+  # redirect on the main page (Last posts)
+  redirect to '/'
 end
