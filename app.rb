@@ -15,6 +15,7 @@ end
 configure do
     #intialization DataBase
     init_db
+    # create table if not exist table
     @db.execute 'create table if not exists Posts
     (
 	        id	INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -24,9 +25,9 @@ configure do
 end
 
 get '/' do
-    #choose list posts from DateBase
+    # choose list posts from DateBase
+
     @results = @db.execute 'select * from Posts order by id desc'
-     
 
   erb :index
 end
@@ -44,7 +45,7 @@ post '/new' do
     return erb :new
   end
 
-  #save data ib database
+  # save data ib database
   @db.execute 'insert into Posts (content, create_date) values (?, datetime())', [content]
 
   erb "You typed: #{content}"
