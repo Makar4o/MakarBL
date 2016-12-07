@@ -51,3 +51,9 @@ post '/new' do
   # redirect on the main page (Last posts)
   redirect to '/'
 end
+
+get '/post/:id' do
+
+  post_id = params[:id]
+
+end
