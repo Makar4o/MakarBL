@@ -56,4 +56,8 @@ get '/post/:id' do
 
   post_id = params[:id]
 
+  results = @db.execute 'select * from Posts where id = ?', [post_id]
+  @row = results[0]
+
+  erb :post_commit
 end
